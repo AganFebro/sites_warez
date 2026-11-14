@@ -1,10 +1,12 @@
 :root {
   color-scheme: dark;
-  --bg: #141414;
-  --ink: #d5d5d5;
-  --muted: #8d8d8d;
+  --bg: #000;
+  --ink: #fff;
+  --muted: #fff;
   --line: #3a3a3a;
-  --link: #7ec8c3;
+  --link: #fff;
+  --link-fill: #fff;
+  --link-ink: #000;
   --font: "Times New Roman", Times, "Liberation Serif", serif;
   --mono: Consolas, "Cascadia Mono", "Courier New", monospace;
 }
@@ -15,6 +17,7 @@
 
 html {
   background: var(--bg);
+  scrollbar-gutter: stable;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -45,7 +48,13 @@ img {
 }
 
 a {
-  color: var(--link);
+  color: var(--link-ink);
+  background: var(--link-fill);
+  text-decoration: none;
+  line-height: 1;
+  padding: 0.05em 0.28em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 
 h1,

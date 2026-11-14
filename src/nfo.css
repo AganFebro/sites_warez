@@ -18,7 +18,6 @@
 }
 
 .nfo-nav a {
-  padding: 0.45rem 0;
   text-decoration: none;
 }
 
@@ -72,32 +71,82 @@
 
 .nfo-links {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.15rem 0.9rem;
+  flex-wrap: nowrap;
+  gap: 0.35rem;
 }
 
-.nfo-links a {
-  padding: 0.35rem 0;
+.nfo > section {
+  position: relative;
+  margin: 1.7rem 0;
+  padding: 0.85rem 0.8rem 1rem;
+  background:
+    repeating-linear-gradient(90deg, var(--ink) 0 7px, transparent 7px 11px) top / 100% 1px no-repeat,
+    repeating-linear-gradient(90deg, var(--ink) 0 7px, transparent 7px 11px) bottom / 100% 1px no-repeat,
+    repeating-linear-gradient(var(--ink) 0 7px, transparent 7px 11px) left / 1px 100% no-repeat,
+    repeating-linear-gradient(var(--ink) 0 7px, transparent 7px 11px) right / 1px 100% no-repeat;
+}
+
+.nfo > section::before,
+.nfo > section::after,
+.nfo > section > :last-child::before,
+.nfo > section > :last-child::after {
+  content: "+";
+  position: absolute;
+  z-index: 1;
+  color: var(--ink);
+  background: var(--bg);
+  font-family: var(--mono);
+  font-size: 1rem;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.nfo > section::before,
+.nfo > section > :last-child::before {
+  left: 0;
+  transform: translateX(-55%);
+}
+
+.nfo > section::after,
+.nfo > section > :last-child::after {
+  right: 0;
+  transform: translateX(55%);
+}
+
+.nfo > section::before,
+.nfo > section::after {
+  top: 0;
+  transform: translateY(-55%);
+}
+
+.nfo > section::before {
+  transform: translate(-55%, -55%);
+}
+
+.nfo > section::after {
+  transform: translate(55%, -55%);
+}
+
+.nfo > section > :last-child::before {
+  bottom: 0;
+  transform: translate(-55%, 55%);
+}
+
+.nfo > section > :last-child::after {
+  bottom: 0;
+  transform: translate(55%, 55%);
 }
 
 .nfo > section > h2 {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
   font-size: 1rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   text-align: center;
-  margin: 1.6rem 0 0.7rem;
+  margin: 0.15rem 0 0.75rem;
+  padding-bottom: 0.55rem;
   border: 0;
-}
-
-.nfo > section > h2::before,
-.nfo > section > h2::after {
-  content: "";
-  flex: 1;
-  border-top: 1px solid var(--line);
+  background: repeating-linear-gradient(90deg, var(--ink) 0 7px, transparent 7px 11px) bottom / 100% 1px no-repeat;
 }
 
 .nfo > section > p,
@@ -123,7 +172,6 @@
   color: var(--muted);
 }
 
-.nfo-files,
 .nfo-also,
 .nfo-index {
   list-style: none;
@@ -131,20 +179,17 @@
   padding: 0;
 }
 
-.nfo-files li,
 .nfo-also li,
 .nfo-index li {
   display: grid;
   grid-template-columns: 1fr;
   gap: 0.12rem;
   padding: 0.65rem 0;
-  border-top: 1px solid var(--line);
 }
 
-.nfo-files a,
 .nfo-also a,
 .nfo-index a {
-  padding: 0.15rem 0;
+  justify-self: start;
 }
 
 .nfo-meta,
@@ -188,7 +233,7 @@
 }
 
 .nfo-prose :not(pre) > code {
-  background: #1d1d1d;
+  background: #000;
   padding: 0.05em 0.3em;
 }
 
@@ -290,7 +335,6 @@
 .demo-tabs__external {
   display: none;
   margin-left: auto;
-  color: var(--link);
   text-decoration: none;
 }
 
@@ -371,12 +415,6 @@
 }
 
 @media (min-width: 720px) {
-  .nfo-files li {
-    grid-template-columns: 9rem 9.5rem minmax(0, 1fr);
-    align-items: baseline;
-    gap: 0.35rem 0.8rem;
-  }
-
   .nfo-prose .vibecode-post__outro {
     grid-template-columns: minmax(0, 1fr) minmax(8rem, 16rem);
   }

@@ -1,9 +1,9 @@
-# febro.one
+# febro
 
-This repository contains the source for `febro.one`, a Vite + React website with two primary surfaces:
+This repository contains the source for `febro`, a Vite + React website with two primary surfaces:
 
 - A portfolio-style landing experience at `/`
-- A markdown-driven blog at `/blog` and `/blog/:slug`
+- A markdown-driven blog at `/notes` and `/notes/:slug`
 
 The project is intentionally lightweight. It does not depend on a CMS, a database, or runtime server-side rendering. Content is maintained directly in the repository, and the production build generates the static assets required by the site.
 
@@ -44,8 +44,8 @@ vercel.json              # SPA rewrite configuration for Vercel
 Routes are defined in `src/AppRouter.jsx`.
 
 - `/` renders the portfolio landing page
-- `/blog` renders the list of blog posts
-- `/blog/:slug` renders a single post
+- `/notes` renders the list of blog posts
+- `/notes/:slug` renders a single post
 - Any unknown route redirects back to `/`
 
 The application is implemented as a client-side React app, but the build process also generates static HTML files for blog social previews so crawlers can read the correct metadata.
@@ -56,7 +56,7 @@ The portfolio lives in `src/App.jsx`.
 
 ### Interaction model
 
-The landing page is one scrolling document. A text link goes to `/blog`. There is no slideshow.
+The landing page is one scrolling document. A text link goes to `/notes`. There is no slideshow.
 
 ### Content model
 
@@ -171,7 +171,7 @@ The site uses two metadata layers:
 - Twitter card tags
 - Canonical URL
 
-These tags describe the main `febro.one` homepage.
+These tags describe the main `febro` homepage.
 
 ### Per-post metadata generation
 
@@ -185,7 +185,7 @@ That script:
 - Scans all markdown posts in `src/posts`
 - Parses each post frontmatter and content
 - Builds a post-specific title, description, and image
-- Writes a static HTML file to `dist/blog/<slug>/index.html`
+- Writes a static HTML file to `dist/notes/<slug>/index.html`
 - Copies the post cover image next to the generated HTML when needed
 - Copies `src/assets/logo_colored.png` to `dist/logo_colored.png` as the site-wide fallback preview image
 
@@ -242,7 +242,7 @@ Its purpose is to transform every `.md` file into a JavaScript module that expor
 
 ### Static metadata output
 
-Even with the SPA rewrite in place, the generated `dist/blog/<slug>/index.html` files are important for social previews and crawlers that request the final built output directly.
+Even with the SPA rewrite in place, the generated `dist/notes/<slug>/index.html` files are important for social previews and crawlers that request the final built output directly.
 
 ## Contributing
 
@@ -300,9 +300,9 @@ Before considering a post ready, verify the following:
 - The `coverImage` path is relative and points to a file that exists
 - Image, HTML demo, and other local asset references are relative and resolve inside the post folder
 - Asset filenames avoid unnecessary spaces or ambiguous naming
-- The post renders correctly in `/blog` and `/blog/:slug`
+- The post renders correctly in `/notes` and `/notes/:slug`
 - `npm run build` completes successfully after the content is added
-- If the post uses a banner, the generated preview metadata in `dist/blog/<slug>/index.html` points to the expected image
+- If the post uses a banner, the generated preview metadata in `dist/notes/<slug>/index.html` points to the expected image
 
 ### Pull Request Notes
 

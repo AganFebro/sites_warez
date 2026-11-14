@@ -73,15 +73,15 @@ export default function BlogPost() {
     };
   }, [slug]);
 
-  if (!post) return <Navigate to="/blog" replace />;
+  if (!post) return <Navigate to="/notes" replace />;
 
   return (
     <main className="nfo">
       <p className="nfo-nav">
-        <Link to="/blog">[ notes ]</Link>
+        <Link to="/notes">[ notes ]</Link>
         <Link to="/">[ home ]</Link>
       </p>
-      <p className="nfo-crumb">febro.one / notes / {post.slug}</p>
+      <p className="nfo-crumb">febro / notes / {post.slug}</p>
 
       <article>
         {post.coverImage ? <img src={post.coverImage} alt="" className="nfo-cover" /> : null}

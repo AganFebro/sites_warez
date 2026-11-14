@@ -14,65 +14,38 @@ const links = [
 
 const roles = [
   {
-    org: 'CARV',
+    org: 'carv',
     href: 'https://carv.io',
-    title: 'Community moderator',
-    when: 'Feb 2024 – Jan 2026',
+    title: 'community moderator',
+    when: 'feb 2024 – jan 2026',
     points: [
-      'Product support for global and regional users, including escalations.',
-      'Grew the Indonesia Discord into a top 3 CARV community, inside a 230k member network.',
-      'Ran daily live events: game nights, quizzes, and campaign streams on Twitch.',
-      'Built the small ops tools around that: surveys, tournament registration, edited gaming videos.',
+      'providing community support for global and regional users.',
+      'grew the indonesia discord into a top 3 carv community, inside a 230k member network.',
+      'ran daily live events such as game nights, quizzes, and campaign streams on twitch.',
+      'sometimes creating tools for carv community xoxo.',
     ],
   },
   {
-    org: 'Anitya',
+    org: 'anitya',
     href: 'https://anitya.space',
-    title: 'Ambassador',
-    when: 'Aug 2025 – Sep 2025',
+    title: 'ambassador',
+    when: 'aug 2025 – sep 2025',
     points: [
-      'Designed a 3D gamified experience inside the Anitya app.',
-      'Posted about the ecosystem on X.',
+      'designed a 3D gamified experience inside the anitya app.',
+      'posted about the ecosystem on x.',
     ],
   },
 ];
 
-const builds = [
-  {
-    name: 'areyouai',
-    meta: 'Go, Next.js',
-    href: 'https://github.com/AganFebro/areyouai',
-    copy: 'Agents find each other and talk in rooms. Turn-based engine, SSE streaming, recovery if the process dies.',
-  },
-  {
-    name: 'Paylazor',
-    meta: 'npm, Solana',
-    href: 'https://github.com/AganFebro/paylazor',
-    copy: 'Checkout widget for “Pay with Solana (USDC)”. Passkey wallets, gasless transactions.',
-  },
-  {
-    name: 'fhast',
-    meta: 'Rust',
-    href: 'https://github.com/AganFebro/fhast',
-    copy: 'Download manager. Windows app, terminal UI, CLI, and a Chrome extension. Resume, retry, SQLite.',
-  },
-  {
-    name: 'NEOLAND',
-    meta: 'Hackathon, winner',
-    href: 'https://github.com/AganFebro/neoland',
-    copy: 'NFT marketplace on CARV SVM. 3rd team’s choice, 1st community favorite.',
-  },
-];
-
-const also = [
-  { name: 'Forge OCR', href: 'https://github.com/AganFebro/forge-ocr', note: 'OCR and auto-mining helper for Roblox' },
-  { name: 'Kwitansi Digital', href: 'https://github.com/AganFebro/Kwitansi-Digital', note: 'Android app for printing receipts' },
-  { name: 'CARV Survey', href: 'https://github.com/AganFebro/CARV-Survey', note: 'Feedback after community activations' },
-  { name: 'Gaming Leaderboard', href: 'https://github.com/AganFebro/CARV-Gaming-Leaderboard', note: 'Tournament board' },
-  { name: 'Flask Web', href: 'https://github.com/AganFebro/flask-web', note: 'Notes and money tracking' },
-  { name: 'Youtube Automation', href: 'https://github.com/AganFebro/yt-automation', note: 'ffmpeg, n8n, whisk-api' },
-  { name: 'Kust Widget', href: 'https://github.com/AganFebro/kust-widget', note: 'Widget engine in Rust' },
-  { name: 'Openclaw bridge', href: 'https://github.com/AganFebro/openclaw-opencode-bridge', note: 'Openclaw driving Opencode' },
+const software = [
+  { name: 'areyouai', href: 'https://github.com/AganFebro/areyouai', note: 'chatroom for ai agents' },
+  { name: 'paylazor', href: 'https://github.com/AganFebro/paylazor', note: 'lazorkit solana checkout widget' },
+  { name: 'fhast', href: 'https://github.com/AganFebro/fhast', note: 'download manager for windows and linux' },
+  { name: 'neoland', href: 'https://github.com/AganFebro/neoland', note: 'nft marketplace on carv svm' },
+  { name: 'forge ocr', href: 'https://github.com/AganFebro/forge-ocr', note: 'experimental ocr and auto-mining helper for roblox' },
+  { name: 'kwitansi digital', href: 'https://github.com/AganFebro/Kwitansi-Digital', note: 'android app for printing receipts' },
+  { name: 'youtube automation', href: 'https://github.com/AganFebro/yt-automation', note: 'youtube video automation using whisk api' },
+  { name: 'kust widget', href: 'https://github.com/AganFebro/kust-widget', note: 'windows widget engine in rust' },
 ];
 
 function Field({ label, children }) {
@@ -90,19 +63,18 @@ export default function App() {
   return (
     <main className="nfo">
       <p className="nfo-nav">
-        <Link to="/blog">[ notes ]</Link>
+        <Link to="/notes">[ notes ]</Link>
       </p>
 
       <Textmode text={art} />
-      <h1>Febrian Avien Wibowo</h1>
-      <p className="nfo-kicker">febro.one / personal release</p>
+      <p className="nfo-kicker">NFO</p>
 
       <dl className="nfo-fields">
-        <Field label="Handle">febro</Field>
-        <Field label="Role">Community moderator</Field>
-        <Field label="Scene">Web3 communities, tools</Field>
-        <Field label="Active">Feb 2024 – Jan 2026</Field>
-        <Field label="Languages">Indonesian, native. English, fluent.</Field>
+        <Field label="Handle">call me "febro"</Field>
+        <Field label="Role">scripting, automation, even things like community management :)</Field>
+        <Field label="Scene">web3 and software development</Field>
+        <Field label="Active">.... yes?</Field>
+        <Field label="Languages">indonesia and english</Field>
         <Field label="Contact">
           <span className="nfo-links">
             {links.map((item) => (
@@ -115,7 +87,10 @@ export default function App() {
       <section aria-labelledby="notes-release">
         <h2 id="notes-release">Release notes</h2>
         <p>
-          Two years running live rooms at CARV. The Indonesia Discord grew into a top 3 community inside a 230k member network. I also build the tools those rooms actually use.
+          well... im febrian, sometimes called by `febro` by my friends. i do a lot of tinkering with software, ai and crypto stuff.
+          idk what else to write here but here's my fav music{' '}
+          <a href="https://www.youtube.com/watch?v=55Qv-CuDl-4" target="_blank" rel="noopener noreferrer">東京スカパラダイスオーケストラ / めくれたオレンジ</a>
+          {' '}(guess my music taste).
         </p>
       </section>
 
@@ -125,7 +100,7 @@ export default function App() {
           {roles.map((role) => (
             <li key={role.org}>
               <a href={role.href} target="_blank" rel="noopener noreferrer">{role.org}</a>
-              {` — ${role.title} — ${role.when}`}
+              {` as ${role.title} in ${role.when}`}
               <ul>
                 {role.points.map((point) => (
                   <li key={point}>{point}</li>
@@ -136,23 +111,10 @@ export default function App() {
         </ol>
       </section>
 
-      <section aria-labelledby="files-heading">
-        <h2 id="files-heading">File_id.diz</h2>
-        <ul className="nfo-files">
-          {builds.map((item) => (
-            <li key={item.name}>
-              <a href={item.href} target="_blank" rel="noopener noreferrer">{item.name}</a>
-              <span className="nfo-meta">{item.meta}</span>
-              <span className="nfo-copy">{item.copy}</span>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <section aria-labelledby="also-heading">
-        <h2 id="also-heading">Also</h2>
+      <section aria-labelledby="software-heading">
+        <h2 id="software-heading">software stuff</h2>
         <ul className="nfo-also">
-          {also.map((item) => (
+          {software.map((item) => (
             <li key={item.name}>
               <a href={item.href} target="_blank" rel="noopener noreferrer">{item.name}</a>
               <span>{item.note}</span>
@@ -167,7 +129,7 @@ export default function App() {
           {posts.map((post) => (
             <li key={post.slug}>
               <time dateTime={post.date}>{formatPostDate(post.date)}</time>
-              <Link to={`/blog/${post.slug}`}>{post.title}</Link>
+              <Link to={`/notes/${post.slug}`}>{post.title}</Link>
             </li>
           ))}
         </ul>

@@ -2,9 +2,15 @@ import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const SITE_URL = 'https://febro.one';
+const SITE_URL = (process.env.SITE_URL || '').replace(/\/$/, '');
 const FALLBACK_IMAGE_PATH = '/logo_colored.png';
-const FALLBACK_IMAGE_URL = `${SITE_URL}${FALLBACK_IMAGE_PATH}`;
+
+function siteUrl(pathname) {
+  const path = pathname.startsWith('/') ? pathname : `/${pathname}`;
+  return SITE_URL ? `${SITE_URL}${path}` : path;
+}
+
+const FALLBACK_IMAGE_URL = siteUrl(FALLBACK_IMAGE_PATH);
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(scriptDir, '..');
@@ -137,7 +143,7 @@ function createDescription(frontmatterDescription, content) {
   const plainText = stripContentToText(content);
 
   if (!plainText) {
-    return 'Tulisan dari febro.';
+    return 'Notes from febro.';
   }
 
   if (plainText.length <= 180) {
@@ -196,7 +202,7 @@ async function resolveCoverImage(markdownPath, coverImageReference, slug) {
   }
 
   if (coverImageReference.startsWith('/')) {
-    return `${SITE_URL}${coverImageReference}`;
+    return siteUrl(coverImageReference);
   }
 
   const sourceImagePath = path.resolve(path.dirname(markdownPath), coverImageReference);
@@ -207,14 +213,14 @@ async function resolveCoverImage(markdownPath, coverImageReference, slug) {
     return FALLBACK_IMAGE_URL;
   }
 
-  const outputDirectory = path.join(distDir, 'blog', slug);
+  const outputDirectory = path.join(distDir, 'notes', slug);
   const imageName = path.basename(sourceImagePath);
   const destinationPath = path.join(outputDirectory, imageName);
 
   await fs.mkdir(outputDirectory, { recursive: true });
   await fs.copyFile(sourceImagePath, destinationPath);
 
-  return `${SITE_URL}/blog/${slug}/${encodeURIComponent(imageName)}`;
+  return siteUrl(`/notes/${slug}/${encodeURIComponent(imageName)}`);
 }
 
 async function buildPostPage(template, markdownPath) {
@@ -224,7 +230,7 @@ async function buildPostPage(template, markdownPath) {
   const title = data.title ? String(data.title).trim() : slug;
   const description = createDescription(data.description, content);
   const image = await resolveCoverImage(markdownPath, data.coverImage, slug);
-  const url = `${SITE_URL}/blog/${slug}`;
+  const url = siteUrl(`/notes/${slug}`);
   const html = applyMetadata(template, {
     title,
     description,
@@ -233,7 +239,7 @@ async function buildPostPage(template, markdownPath) {
     image,
     imageAlt: `${title} cover image`,
   });
-  const outputDirectory = path.join(distDir, 'blog', slug);
+  const outputDirectory = path.join(distDir, 'notes', slug);
 
   await fs.mkdir(outputDirectory, { recursive: true });
   await fs.writeFile(path.join(outputDirectory, 'index.html'), html, 'utf8');
